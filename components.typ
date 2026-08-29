@@ -79,7 +79,7 @@
   )
 }
 
-#let card(body, title: none, subtitle: none, fill: fc-component, inset: 13pt, radius: radius-md, stroke: none, breakable: false) = {
+#let card(body, title: none, subtitle: none, aside: none, fill: fc-component, inset: 13pt, radius: radius-md, stroke: none, breakable: false) = {
   block(
     width: 100%,
     fill: fill,
@@ -91,14 +91,15 @@
       #if title != none [
         #grid(
           columns: (1fr, auto),
-          align: (left, right),
+          align: (left, right + horizon),
           [
             #text(weight: "semibold", size: 11pt, fill: fc-fg, title)
             #if subtitle != none [
               #v(3pt)
               #text(size: 8.5pt, fill: fc-fg-muted, subtitle)
             ]
-          ]
+          ],
+          aside
         )
         #v(8pt)
         #line(length: 100%, stroke: 0.5pt + fc-border-subtle)
