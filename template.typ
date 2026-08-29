@@ -12,6 +12,7 @@
   doc-type: "Étude de cadrage & Proposition",
   status: "Proposition",
   cover: true,
+  logo: "/Code/muse-typst/assets/facile-logo.svg",
   body
 ) = {
   set document(
@@ -180,9 +181,13 @@
       columns: (1fr, auto),
       align: (left + horizon, right + horizon),
       [
-        #text(size: 14pt, weight: "bold", fill: fc-fg, [FACILE])
-        #h(4pt)
-        #text(size: 14pt, weight: "light", fill: fc-fg-muted, [STUDIO])
+        #if logo != none [
+          #image(logo, height: 1.1cm)
+        ] else [
+          #text(size: 14pt, weight: "bold", fill: fc-fg, [FACILE])
+          #h(4pt)
+          #text(size: 14pt, weight: "light", fill: fc-fg-muted, [STUDIO])
+        ]
       ],
       [
         #badge(status, tone: "accent", size: "sm")
