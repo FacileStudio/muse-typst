@@ -1,0 +1,212 @@
+#import "tokens.typ": *
+
+#let tone-colors(tone) = {
+  if tone == "neutral" {
+    (bg: fc-surface, fg: fc-fg, border: fc-border)
+  } else if tone == "accent" {
+    (bg: fc-accent, fg: fc-accent-fg, border: fc-accent)
+  } else if tone == "info" {
+    (bg: fc-info-bg, fg: fc-info, border: fc-info)
+  } else if tone == "success" {
+    (bg: fc-success-bg, fg: fc-success, border: fc-success)
+  } else if tone == "warning" {
+    (bg: fc-warning-bg, fg: fc-warning, border: fc-warning)
+  } else if tone == "danger" {
+    (bg: fc-danger-bg, fg: fc-danger, border: fc-danger)
+  } else if tone == "owner" {
+    (bg: fc-warning-bg, fg: fc-owner, border: fc-owner)
+  } else if tone == "admin" {
+    (bg: rgb("#f5f3ff"), fg: fc-admin, border: fc-admin)
+  } else {
+    (bg: fc-surface, fg: fc-fg, border: fc-border)
+  }
+}
+
+#let badge(content, tone: "neutral", size: "sm") = {
+  let colors = tone-colors(tone)
+  let (pt-size, py, px) = if size == "xs" {
+    (7pt, 1.5pt, 5pt)
+  } else if size == "sm" {
+    (7.5pt, 2pt, 6pt)
+  } else {
+    (8.5pt, 3pt, 8pt)
+  }
+  
+  box(
+    fill: colors.bg,
+    radius: radius-pill,
+    inset: (x: px, y: py),
+    baseline: 5%,
+    outset: 0pt,
+    [
+      #text(
+        fill: colors.fg,
+        size: pt-size,
+        weight: "medium",
+        font: font-sans,
+        content
+      )
+    ]
+  )
+}
+
+#let status-dot(tone: "success", size: 5pt) = {
+  let colors = tone-colors(tone)
+  box(
+    circle(
+      radius: size / 2,
+      fill: colors.fg,
+    )
+  )
+}
+
+#let alert(body, title: none, tone: "info") = {
+  let colors = tone-colors(tone)
+  block(
+    width: 100%,
+    fill: colors.bg,
+    radius: radius-md,
+    inset: 10pt,
+    stroke: (left: 2.5pt + colors.fg),
+    breakable: false,
+    [
+      #if title != none [
+        #text(weight: "semibold", size: 9.5pt, fill: colors.fg, title)
+        #v(3pt)
+      ]
+      #text(size: 9pt, fill: fc-fg, body)
+    ]
+  )
+}
+
+#let card(body, title: none, subtitle: none, fill: fc-component, inset: 11pt, radius: radius-md, stroke: 0.5pt + fc-border, breakable: false) = {
+  block(
+    width: 100%,
+    fill: fill,
+    radius: radius,
+    inset: inset,
+    stroke: stroke,
+    breakable: breakable,
+    [
+      #if title != none [
+        #grid(
+          columns: (1fr, auto),
+          align: (left, right),
+          [
+            #text(weight: "semibold", size: 10.5pt, fill: fc-fg, title)
+            #if subtitle != none [
+              #v(2pt)
+              #text(size: 8pt, fill: fc-fg-muted, subtitle)
+            ]
+          ]
+        )
+        #v(6pt)
+        #line(length: 100%, stroke: 0.5pt + fc-border-subtle)
+        #v(6pt)
+      ]
+      #body
+    ]
+  )
+}
+
+#let metric(val, label, sub: none, tone: "accent") = {
+  let colors = tone-colors(tone)
+  block(
+    width: 100%,
+    fill: fc-component,
+    radius: radius-md,
+    inset: (x: 8pt, y: 10pt),
+    stroke: 0.5pt + fc-border,
+    breakable: false,
+    [
+      #text(size: 8pt, weight: "medium", fill: fc-fg-muted, label)
+      #v(2pt)
+      #text(size: 13pt, weight: "bold", fill: fc-fg, val)
+      #if sub != none [
+        #v(2pt)
+        #text(size: 7.5pt, fill: fc-fg-muted, sub)
+      ]
+    ]
+  )
+}
+
+#let metric-grid(columns: (1fr, 1fr, 1fr), ..metrics) = {
+  grid(
+    columns: columns,
+    column-gutter: 8pt,
+    row-gutter: 8pt,
+    ..metrics.pos()
+  )
+}
+
+#let divider(length: 100%, stroke: 0.5pt + fc-border) = {
+  line(length: length, stroke: stroke)
+}
+
+#let step-item(num, title, role: none, budget: none, content) = {
+  block(
+    width: 100%,
+    fill: fc-component,
+    radius: radius-md,
+    inset: 10pt,
+    stroke: 0.5pt + fc-border,
+    breakable: false,
+    [
+      #grid(
+        columns: (auto, 1fr, auto),
+        gutter: 8pt,
+        align: (center + horizon, left + horizon, right + horizon),
+        [
+          #circle(
+            radius: 10pt,
+            fill: fc-accent,
+            align(center + horizon)[
+              #text(fill: fc-accent-fg, weight: "bold", size: 9pt, str(num))
+            ]
+          )
+        ],
+        [
+          #text(weight: "semibold", size: 10.5pt, fill: fc-fg, title)
+          #if role != none [
+            #h(4pt)
+            #badge(role, tone: "neutral", size: "xs")
+          ]
+        ],
+        [
+          #if budget != none [
+            #badge(budget, tone: "accent", size: "xs")
+          ]
+        ]
+      )
+      #v(6pt)
+      #line(length: 100%, stroke: 0.5pt + fc-border-subtle)
+      #v(6pt)
+      #content
+    ]
+  )
+}
+
+#let team-card(name, role, scope) = {
+  block(
+    width: 100%,
+    fill: fc-component,
+    radius: radius-md,
+    inset: 10pt,
+    stroke: 0.5pt + fc-border,
+    breakable: false,
+    [
+      #grid(
+        columns: (1fr, auto),
+        align: (left + horizon, right + horizon),
+        [
+          #text(weight: "bold", size: 10pt, fill: fc-fg, name)
+        ],
+        [
+          #badge(role, tone: "neutral", size: "xs")
+        ]
+      )
+      #v(4pt)
+      #text(size: 8.5pt, fill: fc-fg-muted, scope)
+    ]
+  )
+}

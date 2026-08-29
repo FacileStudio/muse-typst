@@ -1,0 +1,10 @@
+[tools]
+typst = "0.14.2"
+
+[tasks.build]
+description = "Compile example Typst document"
+run = "typst compile --root . examples/example.typ examples/example.pdf"
+
+[tasks.watch]
+description = "Watch and live compile example Typst document"
+run = "typst watch --root . examples/example.typ examples/example.pdf"
