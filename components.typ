@@ -25,11 +25,11 @@
 #let badge(content, tone: "neutral", size: "sm") = {
   let colors = tone-colors(tone)
   let (pt-size, py, px) = if size == "xs" {
-    (7pt, 1.5pt, 5pt)
+    (7pt, 2pt, 6pt)
   } else if size == "sm" {
-    (7.5pt, 2pt, 6pt)
+    (7.5pt, 2.5pt, 7pt)
   } else {
-    (8.5pt, 3pt, 8pt)
+    (8.5pt, 3.5pt, 9pt)
   }
   
   box(
@@ -66,20 +66,20 @@
     width: 100%,
     fill: colors.bg,
     radius: radius-md,
-    inset: 10pt,
-    stroke: (left: 2.5pt + colors.fg),
+    inset: 12pt,
+    stroke: (left: 3pt + colors.fg),
     breakable: false,
     [
       #if title != none [
-        #text(weight: "semibold", size: 9.5pt, fill: colors.fg, title)
-        #v(3pt)
+        #text(weight: "semibold", size: 10pt, fill: colors.fg, title)
+        #v(4pt)
       ]
-      #text(size: 9pt, fill: fc-fg, body)
+      #text(size: 9.5pt, fill: fc-fg, body)
     ]
   )
 }
 
-#let card(body, title: none, subtitle: none, fill: fc-component, inset: 11pt, radius: radius-md, stroke: 0.5pt + fc-border, breakable: false) = {
+#let card(body, title: none, subtitle: none, fill: fc-component, inset: 13pt, radius: radius-md, stroke: 0.5pt + fc-border, breakable: false) = {
   block(
     width: 100%,
     fill: fill,
@@ -93,16 +93,16 @@
           columns: (1fr, auto),
           align: (left, right),
           [
-            #text(weight: "semibold", size: 10.5pt, fill: fc-fg, title)
+            #text(weight: "semibold", size: 11pt, fill: fc-fg, title)
             #if subtitle != none [
-              #v(2pt)
-              #text(size: 8pt, fill: fc-fg-muted, subtitle)
+              #v(3pt)
+              #text(size: 8.5pt, fill: fc-fg-muted, subtitle)
             ]
           ]
         )
-        #v(6pt)
+        #v(8pt)
         #line(length: 100%, stroke: 0.5pt + fc-border-subtle)
-        #v(6pt)
+        #v(8pt)
       ]
       #body
     ]
@@ -115,15 +115,15 @@
     width: 100%,
     fill: fc-component,
     radius: radius-md,
-    inset: (x: 8pt, y: 10pt),
+    inset: (x: 10pt, y: 12pt),
     stroke: 0.5pt + fc-border,
     breakable: false,
     [
-      #text(size: 8pt, weight: "medium", fill: fc-fg-muted, label)
-      #v(2pt)
-      #text(size: 13pt, weight: "bold", fill: fc-fg, val)
+      #text(size: 8.5pt, weight: "medium", fill: fc-fg-muted, label)
+      #v(4pt)
+      #text(size: 13.5pt, weight: "bold", fill: fc-fg, val)
       #if sub != none [
-        #v(2pt)
+        #v(3pt)
         #text(size: 7.5pt, fill: fc-fg-muted, sub)
       ]
     ]
@@ -133,8 +133,8 @@
 #let metric-grid(columns: (1fr, 1fr, 1fr), ..metrics) = {
   grid(
     columns: columns,
-    column-gutter: 8pt,
-    row-gutter: 8pt,
+    column-gutter: 10pt,
+    row-gutter: 10pt,
     ..metrics.pos()
   )
 }
@@ -148,27 +148,27 @@
     width: 100%,
     fill: fc-component,
     radius: radius-md,
-    inset: 10pt,
+    inset: 12pt,
     stroke: 0.5pt + fc-border,
     breakable: false,
     [
       #grid(
         columns: (auto, 1fr, auto),
-        gutter: 8pt,
+        gutter: 10pt,
         align: (center + horizon, left + horizon, right + horizon),
         [
           #circle(
-            radius: 10pt,
+            radius: 11pt,
             fill: fc-accent,
             align(center + horizon)[
-              #text(fill: fc-accent-fg, weight: "bold", size: 9pt, str(num))
+              #text(fill: fc-accent-fg, weight: "bold", size: 9.5pt, str(num))
             ]
           )
         ],
         [
-          #text(weight: "semibold", size: 10.5pt, fill: fc-fg, title)
+          #text(weight: "semibold", size: 11pt, fill: fc-fg, title)
           #if role != none [
-            #h(4pt)
+            #h(6pt)
             #badge(role, tone: "neutral", size: "xs")
           ]
         ],
@@ -178,9 +178,9 @@
           ]
         ]
       )
-      #v(6pt)
+      #v(8pt)
       #line(length: 100%, stroke: 0.5pt + fc-border-subtle)
-      #v(6pt)
+      #v(8pt)
       #content
     ]
   )
@@ -191,7 +191,7 @@
     width: 100%,
     fill: fc-component,
     radius: radius-md,
-    inset: 10pt,
+    inset: 12pt,
     stroke: 0.5pt + fc-border,
     breakable: false,
     [
@@ -199,13 +199,13 @@
         columns: (1fr, auto),
         align: (left + horizon, right + horizon),
         [
-          #text(weight: "bold", size: 10pt, fill: fc-fg, name)
+          #text(weight: "bold", size: 10.5pt, fill: fc-fg, name)
         ],
         [
           #badge(role, tone: "neutral", size: "xs")
         ]
       )
-      #v(4pt)
+      #v(6pt)
       #text(size: 8.5pt, fill: fc-fg-muted, scope)
     ]
   )

@@ -21,7 +21,7 @@
 
   set page(
     paper: "a4",
-    margin: (top: 2.4cm, bottom: 2.2cm, left: 2.2cm, right: 2.2cm),
+    margin: (top: 2.6cm, bottom: 2.4cm, left: 2.4cm, right: 2.4cm),
     header: context {
       let page-num = counter(page).get().first()
       if cover and page-num == 1 {
@@ -30,7 +30,7 @@
         block(
           width: 100%,
           stroke: (bottom: 0.5pt + fc-border),
-          inset: (bottom: 6pt),
+          inset: (bottom: 8pt),
           [
             #grid(
               columns: (1fr, auto),
@@ -65,7 +65,7 @@
         block(
           width: 100%,
           stroke: (top: 0.5pt + fc-border),
-          inset: (top: 6pt),
+          inset: (top: 8pt),
           [
             #grid(
               columns: (1fr, 1fr),
@@ -85,7 +85,7 @@
 
   set text(
     font: font-sans,
-    size: 9pt,
+    size: 9.5pt,
     fill: fc-fg,
     lang: "fr",
     spacing: 100%,
@@ -93,33 +93,35 @@
 
   set par(
     justify: true,
-    leading: 0.58em,
+    leading: 0.65em,
+    spacing: 1.1em,
   )
 
   show heading.where(level: 1): it => block(
     width: 100%,
-    above: 1.4em,
-    below: 0.8em,
+    above: 2.2em,
+    below: 1.2em,
     breakable: false,
     [
       #text(
-        size: 14pt,
+        size: 15pt,
         weight: "bold",
         fill: fc-fg,
         it.body
       )
-      #v(3pt)
+      #v(6pt)
       #line(length: 100%, stroke: 0.5pt + fc-border)
+      #v(4pt)
     ]
   )
 
   show heading.where(level: 2): it => block(
-    above: 1.1em,
-    below: 0.6em,
+    above: 1.8em,
+    below: 0.9em,
     breakable: false,
     [
       #text(
-        size: 11pt,
+        size: 11.5pt,
         weight: "bold",
         fill: fc-fg,
         it.body
@@ -128,8 +130,8 @@
   )
 
   show heading.where(level: 3): it => block(
-    above: 0.9em,
-    below: 0.5em,
+    above: 1.4em,
+    below: 0.7em,
     breakable: false,
     [
       #text(
@@ -144,14 +146,14 @@
   show table: set table(
     stroke: (x, y) => if y == 0 { (bottom: 1pt + fc-fg) } else { (bottom: 0.5pt + fc-border-subtle) },
     fill: (x, y) => if y == 0 { fc-surface } else { none },
-    inset: (x: 7pt, y: 5.5pt),
+    inset: (x: 9pt, y: 7pt),
   )
 
   show raw.where(block: true): it => block(
     width: 100%,
     fill: fc-surface,
-    radius: radius-sm,
-    inset: 8pt,
+    radius: radius-md,
+    inset: 10pt,
     stroke: 0.5pt + fc-border,
     breakable: false,
     [
@@ -163,7 +165,7 @@
   show raw.where(block: false): it => box(
     fill: fc-surface,
     radius: radius-xs,
-    inset: (x: 3pt, y: 1.5pt),
+    inset: (x: 3.5pt, y: 2pt),
     baseline: 0%,
     [
       #set text(font: font-mono, size: 8pt, fill: fc-fg)
@@ -187,17 +189,17 @@
       ]
     )
 
-    v(3cm)
+    v(3.5cm)
 
     block(
       width: 100%,
       [
         #badge(doc-type, tone: "neutral", size: "sm")
-        #v(10pt)
-        #text(size: 24pt, weight: "bold", fill: fc-fg, tracking: -0.5pt, title)
+        #v(12pt)
+        #text(size: 26pt, weight: "bold", fill: fc-fg, tracking: -0.5pt, title)
         #if subtitle != none [
-          #v(8pt)
-          #text(size: 12pt, fill: fc-fg-muted, subtitle)
+          #v(10pt)
+          #text(size: 12.5pt, fill: fc-fg-muted, subtitle)
         ]
       ]
     )
@@ -205,29 +207,29 @@
     v(4.5cm)
 
     line(length: 100%, stroke: 0.5pt + fc-border)
-    v(10pt)
+    v(12pt)
 
     grid(
       columns: (1fr, 1fr, 1fr),
       gutter: 15pt,
       [
         #text(size: 8pt, weight: "bold", fill: fc-fg-muted, [DESTINATAIRE])
-        #v(3pt)
-        #text(size: 9.5pt, weight: "semibold", fill: fc-fg, if recipient != none { recipient } else { "David" }) \
+        #v(4pt)
+        #text(size: 10pt, weight: "semibold", fill: fc-fg, if recipient != none { recipient } else { "David" }) \
         #if client != none [
           #text(size: 8.5pt, fill: fc-fg-muted, client)
         ]
       ],
       [
         #text(size: 8pt, weight: "bold", fill: fc-fg-muted, [ÉMIS PAR])
-        #v(3pt)
-        #text(size: 9.5pt, weight: "semibold", fill: fc-fg, author) \
+        #v(4pt)
+        #text(size: 10pt, weight: "semibold", fill: fc-fg, author) \
         #text(size: 8.5pt, fill: fc-fg-muted, [facile.studio])
       ],
       [
         #text(size: 8pt, weight: "bold", fill: fc-fg-muted, [DATE & VERSION])
-        #v(3pt)
-        #text(size: 9.5pt, weight: "semibold", fill: fc-fg, if date != none { date } else { "Août 2026" }) \
+        #v(4pt)
+        #text(size: 10pt, weight: "semibold", fill: fc-fg, if date != none { date } else { "Août 2026" }) \
         #text(size: 8.5pt, fill: fc-fg-muted, [Version #version])
       ]
     )
