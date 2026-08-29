@@ -10,7 +10,7 @@
   version: "1.0",
   author: "Facile Studio",
   doc-type: "Étude de cadrage & Proposition",
-  status: "Proposition",
+  status: none,
   cover: true,
   logo: "/Code/muse-typst/assets/facile-logo.svg",
   body
@@ -48,8 +48,10 @@
               [
                 #if client != none [
                   #text(size: 8pt, weight: "medium", fill: fc-fg, client)
-                  #h(6pt)
-                  #badge(status, tone: "neutral", size: "xs")
+                  #if status != none [
+                    #h(6pt)
+                    #badge(status, tone: "neutral", size: "xs")
+                  ]
                 ]
               ]
             )
@@ -190,7 +192,9 @@
         ]
       ],
       [
-        #badge(status, tone: "accent", size: "sm")
+        #if status != none [
+          #badge(status, tone: "accent", size: "sm")
+        ]
       ]
     )
 
