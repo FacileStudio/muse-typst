@@ -13,8 +13,12 @@
   status: none,
   cover: true,
   logo: "/Code/muse-typst/assets/facile-logo.svg",
+  header-logo: auto,
+  header-logo-height: 0.38cm,
   body
 ) = {
+  let running-logo = if header-logo == auto { logo } else { header-logo }
+
   set document(
     title: title,
     author: author,
@@ -37,8 +41,8 @@
               columns: (1fr, auto),
               align: (left + horizon, right + horizon),
               [
-                #if logo != none [
-                  #box(image(logo, height: 0.38cm), baseline: 12%)
+                #if running-logo != none [
+                  #box(image(running-logo, height: header-logo-height), baseline: 12%)
                 ] else [
                   #text(size: 8pt, weight: "bold", fill: fc-fg, [FACILE])
                   #h(3pt)
