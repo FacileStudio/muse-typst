@@ -115,13 +115,13 @@
     width: 100%,
     fill: fc-component,
     radius: radius-md,
-    inset: (x: 10pt, y: 12pt),
+    inset: (x: 9pt, y: 10pt),
     stroke: 0.5pt + fc-border,
     breakable: false,
     [
-      #text(size: 8.5pt, weight: "medium", fill: fc-fg-muted, label)
-      #v(4pt)
-      #text(size: 13.5pt, weight: "bold", fill: fc-fg, val)
+      #text(size: 8pt, weight: "medium", fill: fc-fg-muted, label)
+      #v(3pt)
+      #text(size: 13pt, weight: "bold", fill: fc-fg, val)
       #if sub != none [
         #v(3pt)
         #text(size: 7.5pt, fill: fc-fg-muted, sub)
