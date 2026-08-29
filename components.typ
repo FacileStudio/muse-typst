@@ -60,14 +60,14 @@
   )
 }
 
-#let alert(body, title: none, tone: "info") = {
+#let alert(body, title: none, tone: "info", stroke: none) = {
   let colors = tone-colors(tone)
   block(
     width: 100%,
     fill: colors.bg,
     radius: radius-md,
     inset: 12pt,
-    stroke: (left: 3pt + colors.fg),
+    stroke: stroke,
     breakable: false,
     [
       #if title != none [

@@ -37,9 +37,13 @@
               columns: (1fr, auto),
               align: (left + horizon, right + horizon),
               [
-                #text(size: 8pt, weight: "bold", fill: fc-fg, [FACILE])
-                #h(3pt)
-                #text(size: 8pt, fill: fc-fg-muted, [STUDIO])
+                #if logo != none [
+                  #box(image(logo, height: 0.38cm), baseline: 12%)
+                ] else [
+                  #text(size: 8pt, weight: "bold", fill: fc-fg, [FACILE])
+                  #h(3pt)
+                  #text(size: 8pt, fill: fc-fg-muted, [STUDIO])
+                ]
                 #h(6pt)
                 #text(size: 8pt, fill: fc-border, [·])
                 #h(6pt)
