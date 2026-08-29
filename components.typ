@@ -153,9 +153,9 @@
     breakable: false,
     [
       #grid(
-        columns: (auto, 1fr, auto),
+        columns: (auto, 1fr),
         gutter: 10pt,
-        align: (center + horizon, left + horizon, right + horizon),
+        align: (center + top, left + horizon),
         [
           #circle(
             radius: 11pt,
@@ -166,15 +166,16 @@
           )
         ],
         [
-          #text(weight: "semibold", size: 11pt, fill: fc-fg, title)
-          #if role != none [
-            #h(6pt)
-            #badge(role, tone: "neutral", size: "xs")
-          ]
-        ],
-        [
-          #if budget != none [
-            #badge(budget, tone: "accent", size: "xs")
+          #text(weight: "semibold", size: 10.5pt, fill: fc-fg, title)
+          #if role != none or budget != none [
+            #v(4pt)
+            #if budget != none [
+              #badge(budget, tone: "accent", size: "xs")
+              #h(4pt)
+            ]
+            #if role != none [
+              #badge(role, tone: "neutral", size: "xs")
+            ]
           ]
         ]
       )
