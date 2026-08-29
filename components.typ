@@ -79,7 +79,7 @@
   )
 }
 
-#let card(body, title: none, subtitle: none, fill: fc-component, inset: 13pt, radius: radius-md, stroke: 0.5pt + fc-border, breakable: false) = {
+#let card(body, title: none, subtitle: none, fill: fc-component, inset: 13pt, radius: radius-md, stroke: none, breakable: false) = {
   block(
     width: 100%,
     fill: fill,
@@ -109,14 +109,14 @@
   )
 }
 
-#let metric(val, label, sub: none, tone: "accent") = {
+#let metric(val, label, sub: none, tone: "accent", stroke: none) = {
   let colors = tone-colors(tone)
   block(
     width: 100%,
     fill: fc-component,
     radius: radius-md,
     inset: (x: 9pt, y: 10pt),
-    stroke: 0.5pt + fc-border,
+    stroke: stroke,
     breakable: false,
     [
       #text(size: 8pt, weight: "medium", fill: fc-fg-muted, label)
@@ -143,13 +143,13 @@
   line(length: length, stroke: stroke)
 }
 
-#let step-item(num, title, role: none, budget: none, content) = {
+#let step-item(num, title, role: none, budget: none, content, stroke: none) = {
   block(
     width: 100%,
     fill: fc-component,
     radius: radius-md,
     inset: 12pt,
-    stroke: 0.5pt + fc-border,
+    stroke: stroke,
     breakable: false,
     [
       #grid(
@@ -186,13 +186,13 @@
   )
 }
 
-#let team-card(name, role, scope) = {
+#let team-card(name, role, scope, stroke: none) = {
   block(
     width: 100%,
     fill: fc-component,
     radius: radius-md,
     inset: 12pt,
-    stroke: 0.5pt + fc-border,
+    stroke: stroke,
     breakable: false,
     [
       #grid(

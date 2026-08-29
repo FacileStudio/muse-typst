@@ -155,7 +155,7 @@
     fill: fc-surface,
     radius: radius-md,
     inset: 10pt,
-    stroke: 0.5pt + fc-border,
+    stroke: none,
     breakable: false,
     [
       #set text(font: font-mono, size: 8pt)
