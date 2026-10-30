@@ -12,7 +12,7 @@
   doc-type: "Étude de cadrage & Proposition",
   status: none,
   cover: true,
-  logo: "/Code/muse-typst/assets/facile-logo.svg",
+  logo: "assets/facile-logo.svg",
   header-logo: auto,
   header-logo-height: 0.38cm,
   body
