@@ -36,6 +36,9 @@ Import the library in your `.typ` document:
 ], tone: "warning", title: "Notice")
 ```
 
+`muse-doc` prints `Facile Studio · Document de cadrage confidentiel` at the left of every footer.
+Pass `footer: [Other text]` to change it, or `footer: none` to keep only the page number.
+
 ## Compilation
 
 Compile using `mise` or the `typst` CLI:
