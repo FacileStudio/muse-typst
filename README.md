@@ -48,3 +48,7 @@ mise run build
 # or
 typst compile --root . examples/example.typ examples/example.pdf
 ```
+
+## License
+
+Apache-2.0. See [LICENSE](LICENSE). Copyright Facile Studio.
